@@ -57,7 +57,27 @@ function recordVideo() {
 }
 
 
+nextFrame();
+
+
+var MediaStream;
+function recordClock() {
+    var canvas = document.getElementById('canvas');
+    MediaStream = canvas.captureStream(60);
+
+    video = document.querySelector('video');
+    // video.src = URL.createObjectURL(MediaStream);
+    // video.play();
+
+    rec = new Recorder(MediaStream, {
+        workerPath: '/bower_components/Recorderjs/recorderWorker.js'
+    });
+
+    rec.record();
+
+}
+
+
 function stopVideo() {
-  video.pause();
-  videoMediaStream.stop();
+    MediaStream.stop();
 }
