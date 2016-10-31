@@ -66,14 +66,14 @@ function recordClock() {
     MediaStream = canvas.captureStream(60);
 
     video = document.querySelector('video');
-    // video.src = URL.createObjectURL(MediaStream);
-    // video.play();
+    video.src = URL.createObjectURL(MediaStream);
+    video.play();
 
-    rec = new Recorder(MediaStream, {
-        workerPath: '/bower_components/Recorderjs/recorderWorker.js'
-    });
-
-    rec.record();
+    // rec = new Recorder(MediaStream, {
+    //     workerPath: '/bower_components/Recorderjs/recorderWorker.js'
+    // });
+	//
+    // rec.record();
 
 }
 
