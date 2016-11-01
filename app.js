@@ -60,24 +60,32 @@ function recordVideo() {
 nextFrame();
 
 
-var MediaStream;
+var mediaStream;
 function recordClock() {
     var canvas = document.getElementById('canvas');
-    MediaStream = canvas.captureStream(60);
+    mediaStream = canvas.captureStream(30);
 
-    video = document.querySelector('video');
-    video.src = URL.createObjectURL(MediaStream);
-    video.play();
+    //video = document.querySelector('video');
+    //video.src = URL.createObjectURL(mediaStream);
+    //video.play();
 
-    // rec = new Recorder(MediaStream, {
-    //     workerPath: '/bower_components/Recorderjs/recorderWorker.js'
-    // });
-	//
-    // rec.record();
-
+    rec = new MediaStreamRecorder(mediaStream);
+    rec.mimeType = 'video/webm';
+    rec.quality = 1.0;
+    //rec.ondataavailable = function (blob) {
+    //    // POST/PUT "Blob" using FormData/XHR2
+    //    var blobURL = URL.createObjectURL(blob);
+    //    document.write('' + blobURL + '');
+    //};
+    rec.start();
 }
 
 
 function stopVideo() {
-    MediaStream.stop();
+    rec.stop();
+    rec.ondataavailable = function (blob) {
+        var blobURL = URL.createObjectURL(blob);
+        document.write('' + blobURL + '');
+        rec.save();
+    };
 }

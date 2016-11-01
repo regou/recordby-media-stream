@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/regou/web-audio-example/issues"
   },
-  "homepage": "https://github.com/regou/web-audio-example#readme"
+  "homepage": "https://github.com/regou/web-audio-example#readme",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  }
 }
